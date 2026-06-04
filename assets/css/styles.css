@@ -1,0 +1,50 @@
+/* DISEÑO EDITORIAL LUXURY RESORT */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+h1, h2, h3, .font-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+/* GRADIENTE SUTIL SOBRE LA IMAGEN HERO */
+.hero-bg {
+    background: linear-gradient(to bottom, rgba(35, 30, 25, 0.45) 0%, rgba(20, 15, 12, 0.75) 100%), 
+                url('../images/hero-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* TARJETAS LIMPIAS (Geometría pura de lujo) */
+.apartment-card {
+    background: transparent;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-img-container {
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(110deg, #FCFAF6 8%, #F2E9D5 18%, #FCFAF6 33%);
+    background-size: 200% 100%;
+    animation: skeleton-shine 1.6s infinite linear;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px; 
+}
+
+@keyframes skeleton-shine {
+    to { background-position-x: -200%; }
+}
+
+.animate-slide-up {
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+    from { transform: translateY(15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
