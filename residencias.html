@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestras Residencias | Carrillo Sunset</title>
+    <!-- Tailwind CSS CDN para el renderizado estilizado de alta gama -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-stone-50 text-stone-800 font-sans antialiased">
+
+    <!-- Encabezado / Navbar -->
+    <header class="border-b border-stone-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex flex-col text-left">
+                <a href="index.html" class="text-2xl font-serif tracking-widest uppercase text-stone-900">Carrillo Sunset</a>
+                <span class="text-[9px] tracking-[0.2em] text-amber-600 uppercase font-semibold -mt-1">Luxury Resort</span>
+            </div>
+            <nav class="space-x-6 text-sm uppercase tracking-wider font-medium text-stone-600">
+                <a href="index.html" class="hover:text-stone-950 transition">← Volver al Destino</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Sección de Título de la Vista -->
+    <section class="bg-stone-100 py-12 border-b border-stone-200 text-center px-4">
+        <h1 class="text-3xl md:text-4xl font-serif text-stone-900 mb-2">Colección de Residencias Privadas</h1>
+        <p class="text-stone-500 font-light text-sm max-w-xl mx-auto">Explora la distribución de nuestros 10 apartamentos exclusivos diseñados para ofrecer el máximo confort.</p>
+    </section>
+
+    <!-- Grid de Exposición de los 10 Apartamentos -->
+    <main class="max-w-7xl mx-auto px-6 py-16">
+        <!-- El script de abajo inyectará las tarjetas de forma ordenada en este contenedor -->
+        <div id="contenedor-apartamentos" class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Renderizado Dinámico -->
+        </div>
+    </main>
+
+    <!-- Nueva Sección Elegante: Beneficios y Amenidades de los Apartamentos -->
+    <section class="bg-stone-900 text-white py-20 px-6 border-t border-stone-800">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Bloque de Texto de Beneficios -->
+            <div class="space-y-6">
+                <span class="text-amber-500 text-xs font-semibold uppercase tracking-[0.2em] block">Beneficios Exclusivos</span>
+                <h3 class="text-3xl md:text-4xl font-serif leading-tight">Diseñados para el confort a largo plazo y estancias premium</h3>
+                <p class="text-stone-300 font-light leading-relaxed">
+                    Cada uno de nuestros 10 apartamentos combina la arquitectura bioclimática de Guanacaste con los estándares modernos de comodidad. No es solo un lugar donde dormir; es tu centro operativo y de descanso en el paraíso.
+                </p>
+                
+                <!-- Sub-grid de características clave -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                    <div class="border-l border-amber-500 pl-4">
+                        <h5 class="font-serif font-medium text-amber-400">Conectividad de Alta Velocidad</h5>
+                        <p class="text-stone-400 text-xs mt-1 font-light">Fibra óptica dedicada en cada unidad, ideal para nómadas digitales y trabajo remoto sin interrupciones.</p>
+                    </div>
+                    <div class="border-l border-amber-500 pl-4">
+                        <h5 class="font-serif font-medium text-amber-400">Cocinas de Chef Completas</h5>
+                        <p class="text-stone-400 text-xs mt-1 font-light">Equipadas con electrodomésticos modernos, desayunadores de cuarzo/granito y utensilios premium.</p>
+                    </div>
+                    <div class="border-l border-amber-500 pl-4">
+                        <h5 class="font-serif font-medium text-amber-400">Privacidad & Seguridad</h5>
+                        <p class="text-stone-400 text-xs mt-1 font-light">Complejo cerrado con acceso controlado, parqueo seguro y terrazas orientadas al resguardo íntimo.</p>
+                    </div>
+                    <div class="border-l border-amber-500 pl-4">
+                        <h5 class="font-serif font-medium text-amber-400">Sostenibilidad Nativa</h5>
+                        <p class="text-stone-400 text-xs mt-1 font-light">Maderas locales certificadas, iluminación LED de bajo consumo y gestión inteligente del agua.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Imagen Creativa de Lujo desde la Web para Evitar Errores de Carga -->
+            <div class="relative h-[450px] rounded-xl overflow-hidden shadow-2xl bg-stone-800">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" 
+                     class="w-full h-full object-cover opacity-80" 
+                     alt="Interiores de Lujo Carrillo Sunset">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-950 text-stone-500 text-xs py-8 text-center border-t border-stone-900">
+        <p>&copy; 2026 Carrillo Sunset. Luxury Resort Centralizado.</p>
+    </footer>
+
+    <!-- Script de Configuración e Inyección de los 10 Apartamentos -->
+    <script>
+        const extensions = ['.jpeg', '.jpg', '.png', '.webp'];
+        
+        // Datos de negocio de los 10 apartamentos exclusivos
+        const apartamentos = [
+            { id: 1, nombre: "Apartamento #1 — Sunset Lodge Loft", capacidad: 4, desc: "Ubicación preferencial en planta alta. Terraza extendida con hamaca artesanal y ventilación cruzada ideal para parejas o familias pequeñas." },
+            { id: 2, nombre: "Apartamento #2 — Las Palmas Garden", capacidad: 6, desc: "Acceso directo a jardines tropicales en planta baja. Espacio amplio integrado, ideal para estancias prolongadas." },
+            { id: 3, nombre: "Apartamento #3 — Vista Bahía Suite", capacidad: 2, desc: "Diseño minimalista de lujo enfocado en el descanso. Cama King-size con acabados en maderas locales nobles." },
+            { id: 4, nombre: "Apartamento #4 — Guanacaste Master", capacidad: 5, desc: "Dos habitaciones independientes, cocina equipada completa y ventanales panorámicos de piso a techo." },
+            { id: 5, nombre: "Apartamento #5 — Canopy Refuge", capacidad: 4, desc: "Inmerso en la altura de las copas de los árboles. Perfecto para avistamiento de aves y monos locales desde el balcón." },
+            { id: 6, nombre: "Apartamento #6 — Pacific Breeze Studio", capacidad: 3, desc: "Estudio optimizado con mobiliario funcional, excelente iluminación y barra de trabajo ergonómica." },
+            { id: 7, nombre: "Apartamento #7 — Coral Premium", capacidad: 6, desc: "Tres ambientes separados, el departamento de mayor metraje de la colección familiar." },
+            { id: 8, nombre: "Apartamento #8 — Sol y Mar Flat", capacidad: 4, desc: "Ubicación intermedia y distribución fluida. Balcón privado y baño con grifería de lujo." },
+            { id: 9, nombre: "Apartamento #9 — Nicoya Sanctuary", capacidad: 2, desc: "Atmósfera zen aislada del ruido, ideal para retiros personales, lectura o teletrabajo concentrado." },
+            { id: 10, nombre: "Apartamento #10 — Penthouse Horizon", capacidad: 4, desc: "La Joya de la corona en el nivel más alto. Techos elevados y la mejor panorámica del complejo hacia los horizontes dorados." }
+        ];
+
+        const contenedor = document.getElementById("contenedor-apartamentos");
+
+        // Bucle automatizado para renderizar las 10 opciones de alojamiento de forma limpia
+        apartamentos.forEach(apto => {
+            const htmlTarjeta = `
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-stone-200 flex flex-col justify-between hover:shadow-md transition duration-300">
+                    <div class="overflow-hidden h-64 relative bg-stone-100">
+                        <!-- El script intentará cargar las fotos locales si existen, de lo contrario activará handleImageError -->
+                        <img id="img-gallery-${apto.id}" src="assets/images/${apto.id}/principal.jpeg" onerror="handleImageError(this, '${apto.id}', 'principal')" alt="${apto.nombre}" class="w-full h-full object-cover">
+                        <div class="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm px-3 py-1.5 rounded text-[11px] text-white flex flex-wrap gap-2 font-medium max-w-[90%] justify-end">
+                            <button onclick="changeImage('${apto.id}', 'principal')" class="hover:text-amber-400 transition cursor-pointer">Principal</button>
+                            <button onclick="changeImage('${apto.id}', 'interior1')" class="hover:text-amber-400 transition cursor-pointer">Interior 1</button>
+                            <button onclick="changeImage('${apto.id}', 'interior2')" class="hover:text-amber-400 transition cursor-pointer">Interior 2</button>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-xl font-serif text-stone-900 mb-2">${apto.nombre}</h4>
+                            <p class="text-stone-600 text-sm font-light mb-4">${apto.desc}</p>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-stone-100 pt-4 mt-4">
+                            <span class="text-stone-500 text-xs uppercase tracking-wider">Capacidad: ${apto.capacidad} Huéspedes</span>
+                            <!-- Enlace que redirige a la vista de reserva pasando la unidad elegida mediante la URL -->
+                            <a href="reserva.html?unidad=${encodeURIComponent(apto.nombre)}" class="text-sm uppercase tracking-wider font-semibold text-amber-600 hover:text-amber-700 underline underline-offset-4">Reservar Unidad →</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            contenedor.innerHTML += htmlTarjeta;
+        });
+
+        // Cambiar la imagen activa del visor de tarjetas
+        function changeImage(villaId, filenameBase) {
+            const imgElement = document.getElementById(`img-gallery-${villaId}`);
+            if (imgElement) {
+                imgElement.dataset.extIndex = "0";
+                imgElement.src = `assets/images/${villaId}/${filenameBase}${extensions[0]}`;
+            }
+        }
+
+        // Manejador en caso de que falten los archivos físicos de los apartamentos (Mantiene el sistema seguro)
+        function handleImageError(imgElement, villaId, filenameBase) {
+            let currentIndex = parseInt(imgElement.dataset.extIndex || "0", 10);
+            currentIndex++;
+            if (currentIndex < extensions.length) {
+                imgElement.dataset.extIndex = currentIndex;
+                imgElement.src = `assets/images/${villaId}/${filenameBase}${extensions[currentIndex]}`;
+            } else {
+                imgElement.src = 'assets/images/default-thumbnail.webp';
+            }
+        }
+    </script>
+</body>
+</html>

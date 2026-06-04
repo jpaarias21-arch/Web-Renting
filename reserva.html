@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Reserva | Carrillo Sunset</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-stone-900 text-white font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Navbar Minimalista -->
+    <header class="border-b border-stone-800 bg-stone-950/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex flex-col text-left">
+                <a href="index.html" class="text-2xl font-serif tracking-widest uppercase text-white">Carrillo Sunset</a>
+                <span class="text-[9px] tracking-[0.2em] text-amber-500 uppercase font-semibold -mt-1">Luxury Resort</span>
+            </div>
+            <a href="residencias.html" class="text-xs uppercase tracking-wider text-stone-400 hover:text-white transition">← Ver Catálogo</a>
+        </div>
+    </header>
+
+    <!-- Formulario Centralizado Dedicado -->
+    <main class="max-w-3xl mx-auto py-12 px-6 w-full flex-grow flex flex-col justify-center">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-serif mb-2">Solicitud de Reserva Directa</h1>
+            <p class="text-stone-400 font-light text-sm">Completa tus datos de estadía. La información se registrará de forma segura en el CRM y abrirá tu confirmación inmediata vía WhatsApp.</p>
+        </div>
+
+        <form id="booking-form" class="space-y-6 bg-stone-800/40 p-8 rounded-xl border border-stone-700/40 shadow-xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-stone-400 mb-2">Nombre Completo *</label>
+                    <input type="text" id="nombre" required class="w-full bg-stone-950 border border-stone-700 rounded-lg p-3 text-white focus:outline-none focus:border-amber-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-stone-400 mb-2">Teléfono de Contacto *</label>
+                    <input type="tel" id="telefono" placeholder="Ej: 50688888888" required class="w-full bg-stone-950 border border-stone-700 rounded-lg p-3 text-white focus:outline-none focus:border-amber-500 text-sm">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-stone-400 mb-2">Fecha de Entrada *</label>
+                    <input type="date" id="fecha_entrada" required class="w-full bg-stone-950 border border-stone-700 rounded-lg p-3 text-white focus:outline-none focus:border-amber-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-stone-400 mb-2">Fecha de Salida *</label>
+                    <input type="date" id="fecha_salida" required class="w-full bg-stone-950 border border-stone-700 rounded-lg p-3 text-white focus:outline-none focus:border-amber-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-stone-400 mb-2">Unidad de Interés *</label>
+                    <select id="villa_interes" required class="w-full bg-stone-950 border border-stone-700 rounded-lg p-3 text-stone-300 focus:outline-none focus:border-amber-500 text-sm">
+                        <option value="">Selecciona una opción</option>
+                        <option value="Apartamento #1 — Sunset Lodge Loft">Apartamento #1 — Sunset Lodge Loft</option>
+                        <option value="Apartamento #2 — Las Palmas Garden">Apartamento #2 — Las Palmas Garden</option>
+                        <option value="Apartamento #3 — Vista Bahía Suite">Apartamento #3 — Vista Bahía Suite</option>
+                        <option value="Apartamento #4 — Guanacaste Master">Apartamento #4 — Guanacaste Master</option>
+                        <option value="Apartamento #5 — Canopy Refuge">Apartamento #5 — Canopy Refuge</option>
+                        <option value="Apartamento #6 — Pacific Breeze Studio">Apartamento #6 — Pacific Breeze Studio</option>
+                        <option value="Apartamento #7 — Coral Premium">Apartamento #7 — Coral Premium</option>
+                        <option value="Apartamento #8 — Sol y Mar Flat">Apartamento #8 — Sol y Mar Flat</option>
+                        <option value="Apartamento #9 — Nicoya Sanctuary">Apartamento #9 — Nicoya Sanctuary</option>
+                        <option value="Apartamento #10 — Penthouse Horizon">Apartamento #10 — Penthouse Horizon</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-stone-400 mb-2">Cantidad de Adultos *</label>
+                    <input type="number" id="adultos" min="1" required class="w-full bg-stone-950 border border-stone-700 rounded-lg p-3 text-white focus:outline-none focus:border-amber-500 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs uppercase tracking-wider font-semibold text-stone-400 mb-2">Cantidad de Niños</label>
+                    <input type="number" id="ninos" min="0" value="0" class="w-full bg-stone-950 border border-stone-700 rounded-lg p-3 text-white focus:outline-none focus:border-amber-500 text-sm">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-xs uppercase tracking-wider font-semibold text-stone-400 mb-2">Notas Especiales o Solicitudes</label>
+                <textarea id="notas" rows="3" placeholder="Restricciones dietéticas, requerimiento de cunas, hora estimada de llegada..." class="w-full bg-stone-950 border border-stone-700 rounded-lg p-3 text-white focus:outline-none focus:border-amber-500 text-sm"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold uppercase tracking-wider text-xs p-4 rounded-lg transition duration-300 shadow-md cursor-pointer">
+                Confirmar Registro y Abrir WhatsApp de Reservas
+            </button>
+        </form>
+    </main>
+
+    <footer class="bg-stone-950 text-stone-600 text-xs py-6 text-center border-t border-stone-900">
+        <p>&copy; 2026 Carrillo Sunset. Conexión Backend Encriptada.</p>
+    </footer>
+
+    <!-- Lógica de Auto-Selección basada en parámetros URL -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const unidadSeleccionada = params.get('unidad');
+            
+            if (unidadSeleccionada) {
+                const selectElement = document.getElementById('villa_interes');
+                if (selectElement) {
+                    selectElement.value = decodeURIComponent(unidadSeleccionada);
+                }
+            }
+        });
+    </script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

@@ -3,215 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Carrillo Sunset | Luxury Resort & Villas</title>
-    <meta name="description" content="Descubra una colección exclusiva de residencias, suites y villas privadas en Playa Carrillo, Guanacaste.">
-    
-    <!-- Tipografías Editoriales -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CSS & Supabase JS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Carrillo Sunset | Luxury Destination</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-[#FCFAF6] text-stone-800 font-sans flex flex-col min-h-screen antialiased">
+<body class="bg-stone-50 text-stone-800 font-sans antialiased">
 
-    <!-- NAVBAR EDITORIAL -->
-    <header class="bg-[#FCFAF6]/90 backdrop-blur-md sticky top-0 z-50 border-b border-stone-200/30 h-24 flex items-center">
-        <nav class="max-w-7xl mx-auto px-6 lg:px-12 w-full flex justify-between items-center" aria-label="Navegación Principal">
-            <div class="flex flex-col text-left cursor-pointer">
-                <span class="font-serif text-2xl tracking-[0.15em] uppercase text-stone-900">Carrillo Sunset</span>
-                <span class="text-[9px] tracking-[0.3em] text-[#C5A059] uppercase font-semibold -mt-0.5">Luxury Resort & Villas</span>
+    <!-- Encabezado / Navbar -->
+    <header class="border-b border-stone-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex flex-col text-left">
+                <span class="text-2xl font-serif tracking-widest uppercase text-stone-900">Carrillo Sunset</span>
+                <span class="text-[9px] tracking-[0.2em] text-amber-600 uppercase font-semibold -mt-1">Luxury Resort</span>
             </div>
-            
-            <div class="flex items-center gap-6">
-                <span id="user-status" class="text-[10px] uppercase tracking-widest font-semibold text-stone-500 hidden bg-stone-100 px-4 py-2 border border-stone-200/40"></span>
-                <button id="btn-nav-auth" onclick="abrirLogin()" class="border border-stone-300 hover:border-stone-900 text-stone-900 px-6 py-3 text-xs uppercase tracking-widest transition-all duration-300 bg-transparent cursor-pointer">
-                    Conectarse
-                </button>
-                <button id="btn-logout" onclick="handleLogout()" class="bg-stone-900 hover:bg-stone-800 text-white px-6 py-3 text-xs uppercase tracking-widest transition-all duration-300 hidden cursor-pointer">
-                    Cerrar Sesión
-                </button>
-            </div>
-        </nav>
+            <nav class="hidden md:flex space-x-8 text-sm uppercase tracking-wider font-medium text-stone-600">
+                <a href="residencias.html" class="hover:text-stone-950 transition text-amber-600 font-semibold">Ver Residencias →</a>
+                <a href="#destino" class="hover:text-stone-950 transition">El Destino</a>
+                <a href="#galeria-zona" class="hover:text-stone-950 transition">Galería</a>
+                <a href="https://www.ict.go.cr" target="_blank" rel="noopener noreferrer" class="hover:text-stone-950 transition text-xs border border-stone-300 px-2.5 py-1 rounded">ICT Oficial ↗</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- HERO PRINCIPAL -->
-    <section class="hero-bg min-h-[540px] flex flex-col justify-center items-center text-center px-6 relative">
-        <div class="relative z-10 max-w-4xl mx-auto">
-            <span class="text-[#C5A059] text-xs font-semibold uppercase tracking-[0.4em] mb-4 inline-block">Guanacaste, Costa Rica</span>
-            <h1 class="font-serif text-white text-5xl md:text-6xl font-light mb-6 tracking-wide leading-tight">
-                El arte del descanso <br><span class="italic font-normal text-stone-100">frente al mar Pacífico</span>
-            </h1>
-            <p class="text-stone-200/90 text-xs md:text-sm max-w-xl mx-auto font-light tracking-wide leading-relaxed mb-12">
-                Disfrute de la arena dorada, palmeras infinitas y la majestuosidad de Playa Carrillo desde nuestras exclusivas residencias privadas.
+    <!-- Héroe Principal (Imagen Creativa de la Web) -->
+    <section class="relative h-[70vh] bg-stone-900 flex items-center justify-center text-center px-4 animate-fade-in">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" 
+             class="absolute inset-0 w-full h-full object-cover opacity-50" alt="Playa Carrillo Atardecer">
+        <div class="relative z-10 max-w-3xl">
+            <span class="text-amber-400 text-xs font-semibold uppercase tracking-[0.3em] mb-3 block">Sostenibilidad & Confort Absoluto</span>
+            <h1 class="text-4xl md:text-6xl font-serif text-white mb-6 leading-tight">Donde el lujo rústico encuentra el paraíso</h1>
+            <p class="text-stone-200 text-lg md:text-xl font-light mb-8 max-w-2xl mx-auto">
+                Descubre Playa Carrillo, una joya escondida en Guanacaste catalogada oficialmente entre las playas más hermosas, seguras y pacíficas de Costa Rica.
             </p>
-        </div>
-
-        <!-- BARRA DE BÚSQUEDA INTEGRADA -->
-        <div class="bg-white rounded-none shadow-2xl flex flex-col md:flex-row items-center gap-2 w-full max-w-4xl border border-stone-100 relative z-20 mt-4">
-            <div class="flex-1 text-left px-6 py-3 w-full md:w-auto">
-                <label for="search-ubicacion" class="block text-[9px] font-bold text-stone-400 uppercase tracking-widest mb-1">Destino / Experiencia</label>
-                <input type="text" id="search-ubicacion" placeholder="Ej: Oceanfront, Vista al mar, Suite..." class="w-full text-xs border-0 focus:outline-none focus:ring-0 font-medium text-stone-700 placeholder-stone-300 uppercase tracking-wider">
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="residencias.html" class="w-full sm:w-auto bg-amber-600 hover:bg-amber-700 text-white text-xs font-semibold uppercase tracking-wider px-8 py-4 rounded-lg transition duration-300 shadow-md">
+                    Explorar Nuestros 10 Apartamentos
+                </a>
+                <a href="https://www.visitcostarica.com" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white text-xs font-semibold uppercase tracking-wider px-8 py-4 rounded-lg transition backdrop-blur-sm border border-white/20">
+                    Guía de Viaje Oficial ↗
+                </a>
             </div>
-            <div class="h-8 w-[1px] bg-stone-200 hidden md:block"></div>
-            <div class="w-full md:w-48 text-left px-6 py-3">
-                <label class="block text-[9px] font-bold text-stone-400 uppercase tracking-widest mb-1">Huéspedes de Honor</label>
-                <input type="number" id="search-huespedes" min="1" value="1" class="w-full text-xs border-0 focus:outline-none focus:ring-0 font-semibold text-stone-800">
-            </div>
-            <button onclick="filtrarPropiedades()" class="bg-[#1C1A17] hover:bg-[#2C2924] text-white text-xs font-medium uppercase tracking-widest px-8 py-5 rounded-none transition-all duration-300 cursor-pointer w-full md:w-auto">
-                Ver Disponibilidad
-            </button>
         </div>
     </section>
 
-    <!-- SECCIÓN DESCUBRA -->
-    <section class="max-w-5xl mx-auto px-6 py-20 text-center border-b border-stone-200/40">
-        <span class="text-[#C5A059] text-[11px] font-bold uppercase tracking-[0.25em] mb-3 block">El Refugio Perfecto</span>
-        <h2 class="font-serif text-3xl md:text-4xl font-light text-stone-900 mb-6 tracking-wide">Descubra Playa Carrillo</h2>
-        <p class="text-stone-500 font-light text-sm md:text-base leading-relaxed max-w-3xl mx-auto mb-8">
-            Reconocida como una de las playas más hermosas y serenas de Costa Rica, Carrillo es un santuario bordeado por imponentes palmeras y aguas cristalinas protegidas por un arrecife de coral. Aquí, la naturaleza virgen se funde con el lujo silencioso para crear atardeceres dorados inolvidables.
-        </p>
-        <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-3 text-[10px] font-bold uppercase tracking-widest text-stone-400">
-            <span class="flex items-center gap-1.5">🌴 Aguas Calmas</span>
-            <span class="text-stone-300">•</span>
-            <span class="flex items-center gap-1.5">🌅 Atardeceres Únicos</span>
-            <span class="text-stone-300">•</span>
-            <span class="flex items-center gap-1.5">🪸 Arrecife Natural</span>
+    <!-- Sección: El Destino Elegante con Imágenes de la Web -->
+    <section id="destino" class="max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+            <span class="text-amber-600 text-xs font-bold uppercase tracking-widest block mb-2">Un entorno inigualable</span>
+            <h2 class="text-3xl md:text-4xl font-serif text-stone-900 mb-6 leading-snug">La serenidad dorada de Playa Carrillo</h2>
+            <p class="text-stone-600 font-light leading-relaxed mb-4">
+                A diferencia de otros destinos masificados, Playa Carrillo conserva su esencia natural intacta. Certificada recurrentemente con la <a href="https://www.banderaazulecologica.org" target="_blank" rel="noopener noreferrer" class="text-amber-700 font-medium underline decoration-amber-500 underline-offset-2 hover:text-stone-900">Bandera Azul Ecológica</a>, destaca por su espectacular bahía bordeada de palmeras de coco, arenas claras y un oleaje sumamente calmo.
+            </p>
+            <p class="text-stone-600 font-light leading-relaxed mb-6">
+                Nuestras residencias se ubican estratégicamente en la zona pacífica de la península, permitiéndote disfrutar de brisas cruzadas constantes, avistamiento de fauna local como monos congos y lapas rojas, y los atardeceres dorados icónicos de la provincia de Guanacaste.
+            </p>
+            <div class="border-l-2 border-amber-500 pl-4 italic text-stone-700 text-sm mb-6">
+                "Un refugio diseñado para desconectar del ruido del mundo y reconectar con lo esencial en una de las Zonas Azules del planeta."
+            </div>
+            <a href="https://www.tripadvisor.com/Tourism-g309240-Playa_Carrillo_Province_of_Guanacaste-Vacations.html" target="_blank" rel="noopener noreferrer" class="text-xs uppercase tracking-wider font-semibold text-stone-800 hover:text-amber-600 transition underline underline-offset-4">
+                Ver opiniones en TripAdvisor ↗
+            </a>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <!-- Fotos optimizadas desde la web de palmeras y mar turquesa -->
+            <img src="https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover rounded-lg shadow-sm" alt="Palmeras Carrillo">
+            <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover rounded-lg shadow-sm mt-8" alt="Mar turquesa Carrillo">
         </div>
     </section>
 
-    <!-- GRILLA DE SUITES & VILLAS -->
-    <main id="main-content" class="max-w-7xl mx-auto px-6 lg:px-12 py-16 flex-grow w-full">
-        <div class="flex flex-col md:flex-row justify-between items-baseline mb-12 border-b border-stone-200/30 pb-4">
-            <div class="text-left">
-                <span class="text-[#C5A059] text-[10px] font-bold uppercase tracking-[0.25em] block mb-1">Residencias Disponibles</span>
-                <h3 class="font-serif text-3xl font-light text-stone-900 tracking-wide">Suites & Villas Exclusivas</h3>
+    <!-- Sección: Galería Inspiracional de la Zona -->
+    <section id="galeria-zona" class="bg-stone-900 text-white py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-3xl font-serif mb-3">Estilo de Vida en Carrillo</h3>
+                <p class="text-stone-400 font-light max-w-xl mx-auto text-sm">Pura vida auténtica. Explora las experiencias y ecosistemas protegidos que te esperan a minutos de tu suite.</p>
             </div>
-            <div class="h-[1px] w-24 bg-[#C5A059]/60 hidden md:block"></div>
-        </div>
 
-        <div id="apartamentos-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
-            <div class="col-span-full text-center text-stone-400 py-12 font-light tracking-widest text-xs uppercase">Preparando su experiencia...</div>
-        </div>
-    </main>
-
-    <!-- FOOTER PREMIUM -->
-    <footer class="bg-[#1C1A17] text-stone-400 py-16 mt-auto text-xs font-light tracking-wide">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-left w-full md:w-auto">
-                <span class="font-serif text-2xl tracking-[0.15em] uppercase text-white block mb-1">Carrillo Sunset</span>
-                <span class="text-[9px] tracking-[0.3em] text-[#C5A059] uppercase font-bold block">The Pinnacle of Guanacaste Luxury</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="relative overflow-hidden rounded-xl h-80 group">
+                    <img src="https://images.unsplash.com/photo-1533760881669-e0db6ecd34ff?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Atardecer">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
+                        <div>
+                            <h5 class="font-serif text-lg">Atardeceres de Oro</h5>
+                            <p class="text-stone-400 text-xs font-light">Cielos encendidos catalogados a nivel internacional.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-xl h-80 group">
+                    <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Naturaleza">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
+                        <div>
+                            <h5 class="font-serif text-lg">Santuario Natural</h5>
+                            <p class="text-stone-400 text-xs font-light">Especies protegidas conviviendo de cerca con el resort.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden rounded-xl h-80 group">
+                    <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Aventura">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-6">
+                        <div>
+                            <h5 class="font-serif text-lg">Aventura & Relax</h5>
+                            <p class="text-stone-400 text-xs font-light">Tours de Kayak, Pesca y Snorkel en aguas seguras.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="text-[11px] text-stone-500 text-center md:text-right w-full md:w-auto">
-                &copy; 2026 Carrillo Sunset Resort. Miembro de Exclusive Collections. Todos los derechos reservados.
-            </p>
+
+            <div class="text-center mt-12">
+                <a href="residencias.html" class="inline-block border border-amber-500 text-amber-400 hover:bg-amber-500 hover:text-white text-xs font-semibold uppercase tracking-wider px-8 py-4 rounded-lg transition duration-300">
+                    Ver Disponibilidad de Apartamentos
+                </a>
+            </div>
         </div>
+    </section>
+
+    <footer class="bg-stone-950 text-stone-500 text-xs py-8 text-center border-t border-stone-900">
+        <p class="mb-2">&copy; 2026 Carrillo Sunset. Luxury Destination & Real Estate.</p>
     </footer>
 
-    <!-- MODAL DE ACCESO / AUTENTICACIÓN -->
-    <div id="auth-modal" class="fixed inset-0 bg-stone-900/40 z-50 hidden flex justify-center items-center p-4 backdrop-blur-sm">
-        <div class="bg-white rounded-none max-w-md w-full p-10 shadow-2xl relative border border-stone-100 animate-slide-up">
-            <button onclick="closeModal('auth-modal')" class="absolute top-6 right-6 text-stone-400 hover:text-stone-900 text-xs tracking-widest uppercase cursor-pointer">Cerrar</button>
-            <h3 id="auth-title" class="font-serif text-2xl font-light text-stone-900 mb-8 text-center uppercase tracking-wide">Iniciar Sesión</h3>
-            
-            <form id="auth-form" onsubmit="handleAuth(event)" class="space-y-5">
-                <div id="wrapper-nombres" style="display: none;">
-                    <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1.5">Nombre de Huésped</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <input type="text" id="auth-nombres" placeholder="Nombres" class="w-full p-3.5 border border-stone-200 text-xs focus:border-stone-900 focus:outline-none bg-[#FCFAF6]">
-                        <input type="text" id="auth-apellidos" placeholder="Apellidos" class="w-full p-3.5 border border-stone-200 text-xs focus:border-stone-900 focus:outline-none bg-[#FCFAF6]">
-                    </div>
-                </div>
-                <div>
-                    <label for="auth-email" class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1.5">Correo Electrónico</label>
-                    <input type="email" id="auth-email" required placeholder="ejemplo@luxury.com" class="w-full p-3.5 border border-stone-200 text-xs focus:border-stone-900 focus:outline-none bg-[#FCFAF6]">
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1.5">Contraseña</label>
-                    <input type="password" id="auth-password" required placeholder="••••••••" class="w-full p-3.5 border border-stone-200 text-xs focus:border-stone-900 focus:outline-none bg-[#FCFAF6]">
-                </div>
-                <button type="submit" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium text-xs py-4 uppercase tracking-widest transition-all duration-300 cursor-pointer mt-4">
-                    Continuar
-                </button>
-            </form>
-            <p class="text-xs text-center text-stone-500 mt-8 tracking-wide">
-                <span id="auth-toggle-text">¿No posee una cuenta?</span> 
-                <button onclick="toggleAuthMode()" id="btn-auth-toggle" class="text-[#C5A059] font-bold underline cursor-pointer ml-1">Regístrate aquí</button>
-            </p>
-        </div>
-    </div>
-
-    <!-- MODAL DE RESERVACIÓN -->
-    <div id="booking-modal" class="fixed inset-0 bg-stone-900/40 z-50 hidden flex justify-center items-center p-4 backdrop-blur-sm">
-        <div class="bg-white rounded-none max-w-lg w-full p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto border border-stone-100 animate-slide-up">
-            <button onclick="closeModal('booking-modal')" class="absolute top-6 right-6 text-stone-400 hover:text-stone-900 text-xs tracking-widest uppercase cursor-pointer">Cerrar</button>
-            
-            <h3 class="font-serif text-2xl font-light text-stone-900 mb-1 uppercase tracking-wide">Solicitud de Reserva</h3>
-            <p id="booking-propiedad-nombre" class="text-[#C5A059] font-bold text-xs uppercase tracking-widest mb-8"></p>
-
-            <form id="booking-form" onsubmit="handleBooking(event)" class="space-y-4">
-                <input type="hidden" id="booking-apt-id">
-                <input type="hidden" id="booking-apt-precio">
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-[10px] font-semibold text-stone-400 uppercase tracking-widest mb-1.5">Nombre</label>
-                        <input type="text" id="book-nombres" required class="w-full p-3 border border-stone-200 text-xs focus:border-[#C5A059] focus:outline-none bg-[#FCFAF6]">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-semibold text-stone-400 uppercase tracking-widest mb-1.5">Apellidos</label>
-                        <input type="text" id="book-apellidos" required class="w-full p-3 border border-stone-200 text-xs focus:border-[#C5A059] focus:outline-none bg-[#FCFAF6]">
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-[10px] font-semibold text-stone-400 uppercase tracking-widest mb-1.5">Email</label>
-                        <input type="email" id="book-email" required class="w-full p-3 border border-stone-200 text-xs focus:border-[#C5A059] focus:outline-none bg-[#FCFAF6]">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-semibold text-stone-400 uppercase tracking-widest mb-1.5">Teléfono</label>
-                        <input type="text" id="book-telefono" required placeholder="+506" class="w-full p-3 border border-stone-200 text-xs focus:border-[#C5A059] focus:outline-none bg-[#FCFAF6]">
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-3">
-                    <div>
-                        <label class="block text-[10px] font-semibold text-stone-400 uppercase tracking-widest mb-1.5">Check-In</label>
-                        <input type="date" id="book-entrada" required onchange="calcularPrecioTotal()" class="w-full p-3 border border-stone-200 text-xs focus:border-[#C5A059] focus:outline-none text-stone-600 bg-[#FCFAF6]">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] font-semibold text-stone-400 uppercase tracking-widest mb-1.5">Check-Out</label>
-                        <input type="date" id="book-salida" required onchange="calcularPrecioTotal()" class="w-full p-3 border border-stone-200 text-xs focus:border-[#C5A059] focus:outline-none text-stone-600 bg-[#FCFAF6]">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-[10px] font-semibold text-stone-400 uppercase tracking-widest mb-1.5">Huéspedes</label>
-                    <input type="number" id="book-huespedes" min="1" value="1" required class="w-full p-3 border border-stone-200 text-xs focus:border-[#C5A059] focus:outline-none bg-[#FCFAF6]">
-                </div>
-                <div>
-                    <label class="block text-[10px] font-semibold text-stone-400 uppercase tracking-widest mb-1.5">Notas especiales</label>
-                    <textarea id="book-notas" rows="2" class="w-full p-3 border border-stone-200 text-xs focus:border-[#C5A059] focus:outline-none bg-[#FCFAF6]" placeholder="Preferencias adicionales..."></textarea>
-                </div>
-
-                <div class="bg-[#FAF4E6] p-6 border border-stone-200/40 flex justify-between items-center mt-6">
-                    <div>
-                        <span class="text-[9px] font-bold text-stone-400 uppercase tracking-widest block mb-0.5">Estancia</span>
-                        <span id="booking-noches" class="text-xs text-stone-500 italic">0 noches</span>
-                    </div>
-                    <span id="booking-precio-total" class="font-serif text-3xl font-light text-stone-900">$0.00</span>
-                </div>
-
-                <button type="submit" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium text-xs py-4 uppercase tracking-widest transition-all duration-300 cursor-pointer mt-4">
-                    Confirmar Reserva
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <script src="assets/js/app.js"></script>
 </body>
 </html>
