@@ -4,13 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmar Reserva | Carrillo Sunset</title>
+    
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        // REEMPLAZA ESTOS DOS VALORES CON TUS CREDENCIALES REALES DE SUPABASE
+        const S_URL = "TU_SUPABASE_URL";
+        const S_KEY = "TU_SUPABASE_ANON_KEY";
+        
+        let dbClient = null;
+
+        try {
+            if (typeof supabase !== 'undefined') {
+                dbClient = supabase.createClient(S_URL, S_KEY);
+                console.log("✅ SDK de Supabase cargado e inicializado con éxito desde el CDN.");
+            } else {
+                console.error("⚠️ El objeto global 'supabase' sigue sin definirse. Refresca con Ctrl + F5.");
+            }
+        } catch (e) {
+            console.error("❌ Error crítico en la configuración de Supabase:", e);
+        }
+    </script>
 </head>
 <body class="bg-stone-900 text-white font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- Navbar Minimalista -->
     <header class="border-b border-stone-800 bg-stone-950/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             <div class="flex flex-col text-left">
@@ -21,14 +41,16 @@
         </div>
     </header>
 
-    <!-- Formulario Centralizado Dedicado -->
     <main class="max-w-3xl mx-auto py-12 px-6 w-full flex-grow flex flex-col justify-center">
-        <div class="text-center mb-8">
-            <h1 class="text-3xl font-serif mb-2">Solicitud de Reserva Directa</h1>
-            <p class="text-stone-400 font-light text-sm">Completa tus datos de estadía. La información se registrará de forma segura en el CRM y abrirá tu confirmación inmediata vía WhatsApp.</p>
+        
+        <div class="mb-8 border-b border-stone-800 pb-6">
+            <span class="text-amber-500 text-xs font-semibold uppercase tracking-wider block mb-1">Paso Final</span>
+            <h1 class="text-3xl font-serif text-white">Completa tu Solicitud de Reserva</h1>
+            <p class="text-stone-400 font-light text-sm mt-1">Por favor, verifica la unidad seleccionada e ingresa tus datos de contacto.</p>
         </div>
 
-        <form id="booking-form" class="space-y-6 bg-stone-800/40 p-8 rounded-xl border border-stone-700/40 shadow-xl">
+        <form id="booking-form" onsubmit="guardarReserva(event)" class="space-y-6 bg-stone-800/40 p-8 rounded-xl border border-stone-700/40 shadow-xl">
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                     <label class="block text-xs uppercase tracking-wider font-semibold text-stone-400 mb-2">Nombre Completo *</label>
@@ -38,6 +60,11 @@
                     <label class="block text-xs uppercase tracking-wider font-semibold text-stone-400 mb-2">Teléfono de Contacto *</label>
                     <input type="tel" id="telefono" placeholder="Ej: 50688888888" required class="w-full bg-stone-950 border border-stone-700 rounded-lg p-3 text-white focus:outline-none focus:border-amber-500 text-sm">
                 </div>
+            </div>
+
+            <div>
+                <label class="block text-xs uppercase tracking-wider font-semibold text-stone-400 mb-2">Fecha de Cumpleaños *</label>
+                <input type="date" id="fecha_nacimiento" required class="w-full bg-stone-950 border border-stone-700 rounded-lg p-3 text-white focus:outline-none focus:border-amber-500 text-sm">
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -83,8 +110,8 @@
                 <textarea id="notas" rows="3" placeholder="Restricciones dietéticas, requerimiento de cunas, hora estimada de llegada..." class="w-full bg-stone-950 border border-stone-700 rounded-lg p-3 text-white focus:outline-none focus:border-amber-500 text-sm"></textarea>
             </div>
 
-            <button type="submit" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold uppercase tracking-wider text-xs p-4 rounded-lg transition duration-300 shadow-md cursor-pointer">
-                Confirmar Registro y Abrir WhatsApp de Reservas
+            <button type="submit" id="btn-enviar" class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold uppercase tracking-wider text-xs p-4 rounded-lg transition duration-300 shadow-md cursor-pointer">
+                CONFIRMAR Y REGISTRAR RESERVA →
             </button>
         </form>
     </main>
@@ -93,8 +120,8 @@
         <p>&copy; 2026 Carrillo Sunset. Conexión Backend Encriptada.</p>
     </footer>
 
-    <!-- Lógica de Auto-Selección basada en parámetros URL -->
     <script>
+        // 1. Auto-selección por parámetros URL (?unidad=...)
         document.addEventListener("DOMContentLoaded", () => {
             const params = new URLSearchParams(window.location.search);
             const unidadSeleccionada = params.get('unidad');
@@ -106,7 +133,55 @@
                 }
             }
         });
+
+        // 2. Envío directo y saneado a la tabla de Supabase
+        async function guardarReserva(event) {
+            event.preventDefault();
+
+            // Verificación preventiva de seguridad
+            if (!dbClient) {
+                alert("El SDK de Supabase no se cargó correctamente. Por favor realiza una recarga forzada (Ctrl + F5 o Cmd + Shift + R) e intenta de nuevo.");
+                return;
+            }
+
+            const boton = document.getElementById("btn-enviar");
+            boton.innerText = "PROCESANDO...";
+            boton.disabled = true;
+
+            // Mapeo idéntico al esquema real de tu tabla clientes_reservas
+            const datosReserva = {
+                nombre: document.getElementById("nombre").value,
+                telefono: document.getElementById("telefono").value,
+                fecha_entrada: document.getElementById("fecha_entrada").value,
+                fecha_salida: document.getElementById("fecha_salida").value,
+                adultos: parseInt(document.getElementById("adultos").value) || 1,
+                ninos: parseInt(document.getElementById("ninos").value) || 0,
+                villa_interes: document.getElementById("villa_interes").value,
+                notas: document.getElementById("notas").value,
+                fecha_nacimiento: document.getElementById("fecha_nacimiento").value
+            };
+
+            try {
+                const { data, error } = await dbClient
+                    .from("clientes_reservas")
+                    .insert([datosReserva]);
+
+                if (error) throw error;
+
+                alert("¡Excelente! Tu registro se ha completado de forma segura.");
+                document.getElementById("booking-form").reset();
+                window.location.href = "index.html";
+
+            } catch (err) {
+                console.error("❌ Error detectado en la inserción:", err);
+                alert(`Error al registrar en la base de datos: ${err.message || JSON.stringify(err)}`);
+            } finally {
+                boton.innerText = "CONFIRMAR Y REGISTRAR RESERVA →";
+                boton.disabled = false;
+            }
+        }
     </script>
+    
     <script src="assets/js/app.js"></script>
 </body>
 </html>
